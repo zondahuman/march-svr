@@ -12,6 +12,7 @@
         <module>march-common</module>
         <module>march-concurrent</module>
         <module>march-basic</module>
+        <module>march-rpc</module>
     </modules>
 
 
