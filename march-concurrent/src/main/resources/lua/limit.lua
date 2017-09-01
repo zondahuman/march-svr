@@ -6,10 +6,17 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-local times = redis:incr(KEYS[1]) --设置key(KEY[1])并加1
+local redis = require 'redis'
+local client = redis.connect('172.16.2.146', 6379)
+local response = client:ping()            --true
+print("ping--KEYS[1] :", KEYS[1])
+print("ping--response :", response)
+
+
+local times = client:incr(KEYS[1]) --设置key(KEY[1])并加1
 
 if times == 1 then
-redis:expire(KEYS[1], ARGV[1]) --设置超时时间
+    client:expire(KEYS[1], ARGV[1]) --设置超时时间
 end
 
 

@@ -18,12 +18,17 @@ import java.util.concurrent.CountDownLatch;
 public class DistrubuteLimit {
 
     public Long aquire() throws IOException {
-        String luaScript = Files.asCharSource(new File("D:\\SystemFile\\GithubWorkspace\\march-svr\\march-concurrent\\src\\main\\resources\\lua\\limit.lua"), Charset.defaultCharset()).toString();
+        String luaScript = Files.toString(new File("D:\\SystemFile\\LuaWorkspace\\lua-start1\\distribute_limit.lua"), Charset.defaultCharset());
+//        String luaScript = Files.asCharSource(new File("D:\\SystemFile\\GithubWorkspace\\march-svr\\march-concurrent\\src\\main\\resources\\lua\\limit.lua"), Charset.defaultCharset()).toString();
         Jedis jedis = new Jedis("172.16.2.146", 6379);
+        String ping = jedis.ping();
+        System.out.println("ping-----:" + ping);
 //        String key = "ip:" + System.currentTimeMillis() / 1000; //此处将当前时间戳取秒数
         String key = "ip:" + 1; //此处硬编码时间，保证请求都是在同一秒内发起
         String limit = "6"; //限流大小
-        return (Long) jedis.eval(luaScript, Lists.newArrayList(key), Lists.newArrayList("2", limit));
+        Object response = jedis.eval(luaScript, Lists.newArrayList(key), Lists.newArrayList("2", limit));
+        System.out.println("response-----:" + response);
+        return (Long) response;
     }
 
 
