@@ -18,7 +18,7 @@ import java.util.concurrent.CountDownLatch;
 public class DistrubuteLimit {
 
     public Long aquire() throws IOException {
-        String luaScript = Files.toString(new File("D:\\SystemFile\\LuaWorkspace\\lua-start1\\distribute_limit.lua"), Charset.defaultCharset());
+        String luaScript = Files.toString(new File("D:\\SystemFile\\GithubWorkspace\\march-svr\\march-concurrent\\src\\main\\resources\\lua\\limit.lua"), Charset.defaultCharset());
 //        String luaScript = Files.asCharSource(new File("D:\\SystemFile\\GithubWorkspace\\march-svr\\march-concurrent\\src\\main\\resources\\lua\\limit.lua"), Charset.defaultCharset()).toString();
         Jedis jedis = new Jedis("172.16.2.146", 6379);
         String ping = jedis.ping();

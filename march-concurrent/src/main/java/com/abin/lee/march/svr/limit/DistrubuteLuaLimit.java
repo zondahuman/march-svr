@@ -35,8 +35,8 @@ public class DistrubuteLuaLimit {
         String limit = "6"; //限流大小
 //        Object response = jedis.eval(luaScript, Lists.newArrayList(key), Lists.newArrayList("2", limit));
 //        System.out.println("response-----:" + response);
-        boolean flag = accessLimit(key, 6, 100000, jedis);
-        System.out.println("flag-----:" + flag);
+//        boolean flag = accessLimit(key, 6, 100000, jedis);
+//        System.out.println("flag-----:" + flag);
     }
 
     public Long aquire() throws IOException {
@@ -50,8 +50,8 @@ public class DistrubuteLuaLimit {
 //        System.out.println("response-----:" + response);
         List<String> keys = Collections.singletonList(key);
         List<String> argv = Arrays.asList(String.valueOf(limit), String.valueOf(100000));
-
-        Long result = (long) jedis.eval(loadScriptString("D:\\SystemFile\\GithubWorkspace\\march-svr\\march-concurrent\\src\\main\\resources\\lua\\script.lua"), keys, argv);
+//
+        Long result = (long) jedis.eval(loadScriptString("D:\\SystemFile\\GithubWorkspace\\march-svr\\march-concurrent\\src\\main\\resources\\lua\\limit.lua"), keys, argv);
         System.out.println("result-----:" + result);
         return result;
     }
@@ -60,7 +60,7 @@ public class DistrubuteLuaLimit {
         List<String> keys = Collections.singletonList(ip);
         List<String> argv = Arrays.asList(String.valueOf(limit), String.valueOf(timeout));
 
-        return 1 == (long) connection.eval(loadScriptString("D:\\SystemFile\\GithubWorkspace\\march-svr\\march-concurrent\\src\\main\\resources\\lua\\script.lua"), keys, argv);
+        return 1 == (long) connection.eval(loadScriptString("D:\\SystemFile\\GithubWorkspace\\march-svr\\march-concurrent\\src\\main\\resources\\lua\\limit.lua"), keys, argv);
     }
 
     // 加载Lua代码
