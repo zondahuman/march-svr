@@ -33,4 +33,15 @@ public class DubboServiceImpl implements DubboService{
             return SecondaryCategory.SYSTEM;
         return SecondaryCategory.MANNUAL;
     }
+
+
+    @Override
+    public List<Integer> findById(List<Integer> list) {
+        int id = list.get(0);
+        List<Integer> result = Lists.newArrayList();
+        for (int i = 0; i <id ; i++) {
+            result.add(i);
+        }
+        return result;
+    }
 }

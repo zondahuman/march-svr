@@ -16,4 +16,7 @@ public interface DubboService {
     List<Integer> findById(int id);
 
     SecondaryCategory findByParam(int id);
+
+    List<Integer> findById(List<Integer> list);
+
 }

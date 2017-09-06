@@ -3,6 +3,7 @@ package com.abin.lee.march.svr.dubbo.client.view;
 import com.abin.lee.march.svr.common.JsonUtil;
 import com.abin.lee.march.svr.dubbo.enums.SecondaryCategory;
 import com.abin.lee.march.svr.dubbo.server.service.DubboService;
+import com.google.common.collect.Lists;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
@@ -24,6 +25,8 @@ public class DubboClientServer {
         String message = "";
         List<Integer> list = null;
         SecondaryCategory secondaryCategory = SecondaryCategory.DEFAULT;
+        List<Integer> resultList = null;
+
         try {
             message = dubboService.build("2016-10-20");
             System.out.println(" the message from server is:" + message);
@@ -31,6 +34,8 @@ public class DubboClientServer {
             System.out.println("list is:" + JsonUtil.toJson(list));
             secondaryCategory = dubboService.findByParam(10);
             System.out.println("secondaryCategory is:" + secondaryCategory);
+            resultList = dubboService.findById(Lists.newArrayList(1,2));
+            System.out.println("resultList is:" + JsonUtil.toJson(resultList));
 
         } catch (Exception e) {
             e.printStackTrace();
