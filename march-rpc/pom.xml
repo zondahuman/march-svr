@@ -11,5 +11,19 @@
 
     <artifactId>march-rpc</artifactId>
 
+    <packaging>jar</packaging>
+
+
+    <dependencies>
+
+        <dependency>
+            <artifactId>march-common</artifactId>
+            <groupId>com.abin.lee</groupId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+
+
 
 </project>
