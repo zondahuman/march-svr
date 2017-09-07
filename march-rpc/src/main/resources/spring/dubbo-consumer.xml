@@ -9,10 +9,17 @@
         ">
 
     <dubbo:application name="dubbo-service" />
-
-    <dubbo:registry address="zookeeper://172.16.2.145:2181" />
     <dubbo:consumer timeout="5000" />
 
-    <dubbo:reference interface="com.abin.lee.march.svr.dubbo.server.service.DubboService" id="dubboService" />
+    <!-- 使用zookeeper注册中心暴露服务地址 -->
+    <!--<dubbo:registry address="zookeeper://172.16.2.145:2181"/>-->
+    <!--<dubbo:reference interface="com.abin.lee.march.svr.dubbo.server.service.DubboService" id="dubboService" />-->
+
+
+    <!-- dubbo接口去除注册中心，采用直连的方式  -->
+    <dubbo:registry address="N/A"></dubbo:registry>
+    <dubbo:reference interface="com.abin.lee.march.svr.dubbo.server.service.DubboService" id="dubboService" check="false"  url="dubbo://localhost:20880"/>
+
+
 
 </beans>

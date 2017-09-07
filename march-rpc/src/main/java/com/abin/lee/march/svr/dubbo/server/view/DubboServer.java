@@ -16,5 +16,6 @@ public class DubboServer {
         System.out.println(".......Dubbo Server is Running now!..............");
         System.out.println("................................................");
         System.in.read(); // 按任意键退出
+
     }
 }
