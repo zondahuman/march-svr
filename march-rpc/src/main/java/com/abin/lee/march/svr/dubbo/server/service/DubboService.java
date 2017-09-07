@@ -1,6 +1,7 @@
 package com.abin.lee.march.svr.dubbo.server.service;
 
-import com.abin.lee.march.svr.dubbo.enums.SecondaryCategory;
+import com.abin.lee.march.svr.dubbo.enums.UserRole;
+import com.abin.lee.march.svr.dubbo.model.UserInfo;
 
 import java.util.List;
 
@@ -15,8 +16,10 @@ public interface DubboService {
 
     List<Integer> findById(int id);
 
-    SecondaryCategory findByParam(int id);
+    UserRole findByParam(int id);
 
     List<Integer> findById(List<Integer> list);
+
+    List<UserInfo> findUserInfoById(List<Integer> list);
 
 }

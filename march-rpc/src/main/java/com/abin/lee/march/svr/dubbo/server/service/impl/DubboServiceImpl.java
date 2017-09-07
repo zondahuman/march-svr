@@ -1,6 +1,7 @@
 package com.abin.lee.march.svr.dubbo.server.service.impl;
 
-import com.abin.lee.march.svr.dubbo.enums.SecondaryCategory;
+import com.abin.lee.march.svr.dubbo.enums.UserRole;
+import com.abin.lee.march.svr.dubbo.model.UserInfo;
 import com.abin.lee.march.svr.dubbo.server.service.DubboService;
 import com.google.common.collect.Lists;
 
@@ -28,10 +29,10 @@ public class DubboServiceImpl implements DubboService{
     }
 
     @Override
-    public SecondaryCategory findByParam(int id) {
+    public UserRole findByParam(int id) {
         if(id == 10)
-            return SecondaryCategory.SYSTEM;
-        return SecondaryCategory.MANNUAL;
+            return UserRole.SYSTEM;
+        return UserRole.MANNUAL;
     }
 
 
@@ -41,6 +42,16 @@ public class DubboServiceImpl implements DubboService{
         List<Integer> result = Lists.newArrayList();
         for (int i = 0; i <id ; i++) {
             result.add(i);
+        }
+        return result;
+    }
+
+    @Override
+    public List<UserInfo> findUserInfoById(List<Integer> list) {
+        int id = list.get(1);
+        List<UserInfo> result = Lists.newArrayList();
+        for (int i = 0; i <id ; i++) {
+            result.add(new UserInfo(i, "abin"+i));
         }
         return result;
     }

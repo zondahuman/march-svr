@@ -12,7 +12,9 @@ public class DubboServer {
 
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"classpath*:spring/dubbo-provider.xml"});
         context.start();
-        System.out.println(" app run ");
+        System.out.println("................................................");
+        System.out.println(".......Dubbo Server is Running now!..............");
+        System.out.println("................................................");
         System.in.read(); // 按任意键退出
     }
 }

@@ -1,7 +1,8 @@
 package com.abin.lee.march.svr.dubbo.client.view;
 
 import com.abin.lee.march.svr.common.JsonUtil;
-import com.abin.lee.march.svr.dubbo.enums.SecondaryCategory;
+import com.abin.lee.march.svr.dubbo.enums.UserRole;
+import com.abin.lee.march.svr.dubbo.model.UserInfo;
 import com.abin.lee.march.svr.dubbo.server.service.DubboService;
 import com.google.common.collect.Lists;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -24,18 +25,20 @@ public class DubboClientServer {
         // proxy
         String message = "";
         List<Integer> list = null;
-        SecondaryCategory secondaryCategory = SecondaryCategory.DEFAULT;
+        UserRole userRole = UserRole.DEFAULT;
         List<Integer> resultList = null;
-
+        List<UserInfo> userInfoList = null;
         try {
             message = dubboService.build("2016-10-20");
             System.out.println(" the message from server is:" + message);
             list = dubboService.findById(5);
             System.out.println("list is:" + JsonUtil.toJson(list));
-            secondaryCategory = dubboService.findByParam(10);
-            System.out.println("secondaryCategory is:" + secondaryCategory);
+            userRole = dubboService.findByParam(10);
+            System.out.println("userRole is:" + userRole);
             resultList = dubboService.findById(Lists.newArrayList(1,2));
             System.out.println("resultList is:" + JsonUtil.toJson(resultList));
+            userInfoList = dubboService.findUserInfoById(Lists.newArrayList(1,2));
+            System.out.println("userInfoList is:" + JsonUtil.toJson(userInfoList));
 
         } catch (Exception e) {
             e.printStackTrace();
