@@ -19,8 +19,8 @@ public class ThriftServer {
     public static void main(String[] args) throws TTransportException {
         TMultiplexedProcessor processor = new TMultiplexedProcessor();
 
-        TServerTransport t = new TServerSocket(30000);
-        TServer server = new TThreadPoolServer(new TThreadPoolServer.Args(t).processor(processor));
+        TServerTransport transport = new TServerSocket(30000);
+        TServer server = new TThreadPoolServer(new TThreadPoolServer.Args(transport).processor(processor));
 
         processor.registerProcessor("TeamService", new TeamService.Processor<TeamService.Iface>(new TeamServiceImpl()));
 //        processor.registerProcessor("UserService", new UserService.Processor<UserService.Iface>(new UserImpl()));

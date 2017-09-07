@@ -33,6 +33,7 @@ public class ThriftClientServer {
 
         transport.open();
 
+        //------------------------------------TeamService----------------------------------------------
         List<TeamInfo> teamInfoList = teamService.findTeamListById(5L);
         System.out.println("teamInfoList= : " + JsonUtil.toJson(teamInfoList));
         TeamInfo teamInfo = teamService.findTeamById(5L);
@@ -54,6 +55,11 @@ public class ThriftClientServer {
 
         Business businessResult = teamService.findBusinessByBid(5L);
         System.out.println("businessResult= : " + businessResult);
+        //------------------------------------TeamService----------------------------------------------
+
+
+
+
 
 //        service2.store1(new User(888,"tom","haha"));
 //        System.out.println(service2.retrieve1(999));
