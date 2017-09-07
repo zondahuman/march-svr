@@ -26,7 +26,9 @@ public class ThriftServer {
 //        processor.registerProcessor("UserService", new UserService.Processor<UserService.Iface>(new UserImpl()));
 
 //         TSimpleServer server = new TSimpleServer(new Args(t).processor(processor));
-        System.out.println("the server is started and is listening at 9090...");
+        System.out.println(".........................................................................................................");
+        System.out.println("...........................the server is started and is listening at 30000...............................");
+        System.out.println(".........................................................................................................");
 
         server.serve();
     }
