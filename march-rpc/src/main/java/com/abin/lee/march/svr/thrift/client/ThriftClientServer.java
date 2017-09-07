@@ -1,15 +1,23 @@
 package com.abin.lee.march.svr.thrift.client;
 
 import com.abin.lee.march.svr.common.JsonUtil;
+import com.abin.lee.march.svr.thrift.callback.MyCallback;
 import com.abin.lee.march.svr.thrift.enums.BusinessRoleEnum;
 import com.abin.lee.march.svr.thrift.model.Business;
 import com.abin.lee.march.svr.thrift.model.TeamInfo;
 import com.abin.lee.march.svr.thrift.service.TeamService;
 import org.apache.thrift.TException;
+import org.apache.thrift.async.TAsyncClientManager;
 import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.protocol.TMultiplexedProtocol;
+import org.apache.thrift.protocol.TProtocolFactory;
+import org.apache.thrift.transport.TNonblockingSocket;
+import org.apache.thrift.transport.TNonblockingTransport;
 import org.apache.thrift.transport.TSocket;
+import org.apache.thrift.transport.TTransportException;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -18,17 +26,27 @@ import java.util.List;
  * com.abin.lee.march.svr.thrift.client
  */
 public class ThriftClientServer {
+    private static final String HOST = "localhost" ;
+    private static final Integer PORT = 30000 ;
+    private static final Integer clientTimeout = 60000 ;
 
-    public static void main(String[] args) throws TException {
-        TSocket transport = new TSocket("localhost", 30000);
+    public static void main(String[] args) throws TException, InterruptedException {
+        //synchronous
+//        main_sync();
+        //asynchronous
+        main_async();
+    }
+
+
+    public static void main_sync() throws TException {
+        TSocket transport = new TSocket(HOST, PORT);
         TBinaryProtocol protocol = new TBinaryProtocol(transport);
 
-        TMultiplexedProtocol teamProtocol = new TMultiplexedProtocol(protocol,"TeamService");
+        TMultiplexedProtocol teamProtocol = new TMultiplexedProtocol(protocol, "TeamService");
         TeamService.Client teamService = new TeamService.Client(teamProtocol);
 
 //        TMultiplexedProtocol mp2 = new TMultiplexedProtocol(protocol,"UserService");
 //        UserService.Client service2 = newUserService.Client(mp2);
-
 
         transport.open();
 
@@ -49,7 +67,8 @@ public class ThriftClientServer {
         business.setBusinessId(20000000000000000L);
         business.setBusinessAddress("Los Angeles");
         business.setBusinessName("Holly Wood");
-        business.setContractId(30000000000000000L);;
+        business.setContractId(30000000000000000L);
+        ;
         teamService.insert(business);
 
         Business businessResult = teamService.findBusinessByBid(5L);
@@ -57,14 +76,29 @@ public class ThriftClientServer {
         //------------------------------------TeamService----------------------------------------------
 
 
-
-
-
 //        service2.store1(new User(888,"tom","haha"));
 //        System.out.println(service2.retrieve1(999));
 
         transport.close();
+    }
 
+
+    public static void main_async() throws TException, InterruptedException {
+        try {
+            TAsyncClientManager clientManager = new TAsyncClientManager();
+            TNonblockingTransport transport = new TNonblockingSocket(HOST, PORT, clientTimeout);
+            TProtocolFactory protocol = new TCompactProtocol.Factory();
+            TeamService.AsyncClient asyncClient = new TeamService.AsyncClient(protocol, clientManager, transport);
+            System.out.println("Client calls .....");
+            MyCallback callBack = new MyCallback();
+            asyncClient.findTeamById(5L, callBack);
+
+            while (true) {
+                Thread.sleep(1);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
