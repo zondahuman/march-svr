@@ -31,8 +31,8 @@ public class TeamServiceImpl implements TeamService.Iface {
             teamInfo.setTeamInventory(500);
             teamInfoList.add(teamInfo);
         }
-//        return teamInfoList;
-                return null;
+        return teamInfoList;
+//                return null;
     }
 
     @Override
