@@ -18,7 +18,12 @@
 
     <!-- dubbo接口去除注册中心，采用直连的方式  -->
     <dubbo:registry address="N/A"></dubbo:registry>
+
+
     <dubbo:reference interface="com.abin.lee.march.svr.dubbo.server.service.DubboService" id="dubboService" check="false"  url="dubbo://localhost:20880"/>
+    <dubbo:reference interface="com.abin.lee.march.svr.dubbo.server.service.GlobalService" id="globalService" check="false"  url="dubbo://localhost:20880">
+        <dubbo:method name="findByParam" async="true" />
+    </dubbo:reference>
 
 
 
