@@ -20,7 +20,7 @@ public class CountDownLatchMode {
             new Thread(() -> {
                 System.out.println(String.format("%s\t%s %s", new Date(), threadName, "started"));
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(10000);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
