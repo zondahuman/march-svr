@@ -1,5 +1,8 @@
 package com.abin.lee.march.svr.basic.stack.test;
 
+import com.google.common.annotations.VisibleForTesting;
+import org.junit.Test;
+
 /**
  * Created by abin on 2017/7/25 15:20.
  * march-svr
@@ -19,4 +22,16 @@ public class StackEscapeAnalysisTest {
         long e = System.currentTimeMillis();
         System.out.println(e - b);
     }
+
+    @Test
+    public void test1(){
+        int state = 0;
+        while(state < 30){
+            System.out.println("state=" + state + ", state % 3 =" + state % 3);
+            state++;
+        }
+    }
+
+
+
 }
