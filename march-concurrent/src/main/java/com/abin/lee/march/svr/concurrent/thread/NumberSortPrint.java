@@ -12,7 +12,7 @@ public class NumberSortPrint {
         while(num<100){
             synchronized (lock){
                 if(num % 2 != 0){
-                    System.out.println("Thread-Name: "+ Thread.currentThread().getName() +", "+ (++num));
+                    System.out.println("Thread-Name: "+ Thread.currentThread().getName() +", event="+ (++num));
                     lock.notify();
                     try {
                         lock.wait();
@@ -28,7 +28,7 @@ public class NumberSortPrint {
         while(num<100){
             synchronized (lock){
                 if(num % 2 == 0) {
-                    System.out.println("Thread-Name: " + Thread.currentThread().getName() + ", " + (++num));
+                    System.out.println("Thread-Name: " + Thread.currentThread().getName() + ", odd=" + (++num));
                     lock.notify();
                     try {
                         lock.wait();
