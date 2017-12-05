@@ -1,4 +1,4 @@
-package com.abin.lee.march.svr.spike;
+package com.abin.lee.march.svr.spike.grab;
 
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.util.StopWatch;
@@ -11,6 +11,7 @@ import java.util.concurrent.CountDownLatch;
  * Created by abin on 2017/12/5 11:37.
  * march-svr
  * com.abin.lee.march.svr.spike
+ * http://blog.csdn.net/hengyunabc/article/details/19433779/
  */
 public class GrabRedEnvelope {
 
