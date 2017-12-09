@@ -7,7 +7,7 @@ import java.util.LinkedList;
  * march-svr
  * com.abin.lee.march.svr.practice.producer
  */
-public class Person {
+public class OutputConsume {
 
     private LinkedList<Integer> list = new LinkedList<>();
     private int Max = 10;
@@ -59,7 +59,7 @@ public class Person {
 
 
     public static void main(String[] args) throws Exception {
-        Person pc = new Person();
+        OutputConsume pc = new OutputConsume();
         Producer producer = pc.new Producer();
         Thread thread1 = new Thread(producer);
         Consumer consumer = pc.new Consumer();
