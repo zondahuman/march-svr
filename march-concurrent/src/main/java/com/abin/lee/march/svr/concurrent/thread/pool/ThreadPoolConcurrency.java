@@ -52,6 +52,7 @@ public class ThreadPoolConcurrency {
             }
         });
 
+
         ExecutorService fixedThreadPool2 = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         Future<Object> future2 = fixedThreadPool2.submit(new Callable<Object>() {
             @Override
@@ -61,6 +62,7 @@ public class ThreadPoolConcurrency {
         });
         Object result2 = future2.get();
         System.out.println("Executors.newFixedThreadPool----submit---Callable--result2="+result2);
+
     }
 
     /**
