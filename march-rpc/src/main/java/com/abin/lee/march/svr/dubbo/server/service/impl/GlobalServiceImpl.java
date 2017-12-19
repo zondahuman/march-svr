@@ -1,7 +1,9 @@
 package com.abin.lee.march.svr.dubbo.server.service.impl;
 
+import com.abin.lee.march.svr.common.JsonUtil;
 import com.abin.lee.march.svr.dubbo.enums.UserRole;
 import com.abin.lee.march.svr.dubbo.model.UserInfo;
+import com.abin.lee.march.svr.dubbo.model.UserRequest;
 import com.abin.lee.march.svr.dubbo.server.service.GlobalService;
 import com.google.common.collect.Lists;
 
@@ -54,5 +56,12 @@ public class GlobalServiceImpl implements GlobalService {
             result.add(new UserInfo(i, "abin"+i));
         }
         return result;
+    }
+
+    @Override
+    public String findByParam(UserRequest request) {
+//        System.out.println("request="+ JsonUtil.toJson(request));
+
+        return "receice";
     }
 }
