@@ -9,3 +9,5 @@
 /.springBeans
 rebel*.xml
 *.log
+*.class
+
