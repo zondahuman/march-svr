@@ -1,7 +1,10 @@
 package com.abin.lee.march.svr.dubbo.server.service.impl;
 
+import com.abin.lee.march.svr.common.JsonUtil;
 import com.abin.lee.march.svr.dubbo.enums.UserRole;
+import com.abin.lee.march.svr.dubbo.model.SysRequest;
 import com.abin.lee.march.svr.dubbo.model.UserInfo;
+import com.abin.lee.march.svr.dubbo.model.UserRequest;
 import com.abin.lee.march.svr.dubbo.server.service.DubboService;
 import com.google.common.collect.Lists;
 
@@ -55,4 +58,24 @@ public class DubboServiceImpl implements DubboService{
         }
         return result;
     }
+
+    @Override
+    public String findByParam(SysRequest request) {
+        String result = "FAILURE";
+//        System.out.println("request="+ JsonUtil.toJson(request));
+        System.out.println("request="+ request.toString());
+        result = "SUCCESS";
+        return result;
+    }
+
+    @Override
+    public SysRequest findByParam1(SysRequest request) {
+        String result = "FAILURE";
+//        System.out.println("request="+ JsonUtil.toJson(request));
+        System.out.println("request="+ request.toString());
+        result = "SUCCESS";
+        return request;
+    }
+
+
 }

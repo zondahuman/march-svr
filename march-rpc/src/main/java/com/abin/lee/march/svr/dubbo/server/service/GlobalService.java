@@ -2,6 +2,7 @@ package com.abin.lee.march.svr.dubbo.server.service;
 
 import com.abin.lee.march.svr.dubbo.enums.UserRole;
 import com.abin.lee.march.svr.dubbo.model.UserInfo;
+import com.abin.lee.march.svr.dubbo.model.UserRequest;
 
 import java.util.List;
 
@@ -21,5 +22,8 @@ public interface GlobalService {
     List<Integer> findById(List<Integer> list);
 
     List<UserInfo> findUserInfoById(List<Integer> list);
+
+    String findByParam(UserRequest request);
+
 
 }

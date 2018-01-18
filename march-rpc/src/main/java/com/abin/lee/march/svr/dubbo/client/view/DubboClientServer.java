@@ -2,7 +2,9 @@ package com.abin.lee.march.svr.dubbo.client.view;
 
 import com.abin.lee.march.svr.common.JsonUtil;
 import com.abin.lee.march.svr.dubbo.enums.UserRole;
+import com.abin.lee.march.svr.dubbo.model.SysRequest;
 import com.abin.lee.march.svr.dubbo.model.UserInfo;
+import com.abin.lee.march.svr.dubbo.model.UserRequest;
 import com.abin.lee.march.svr.dubbo.server.service.DubboService;
 import com.abin.lee.march.svr.dubbo.server.service.GlobalService;
 import com.alibaba.dubbo.rpc.RpcContext;
@@ -23,9 +25,9 @@ public class DubboClientServer {
 
     public static void main(String[] args) throws TException, InterruptedException {
         //synchronous
-//        main_sync();
+        main_sync();
         //asynchronous
-        main_async();
+//        main_async();
     }
 
     public static void main_sync() {
@@ -40,6 +42,8 @@ public class DubboClientServer {
         UserRole userRole = UserRole.DEFAULT;
         List<Integer> resultList = null;
         List<UserInfo> userInfoList = null;
+        String result = "";
+        SysRequest sysRequestResponse = null;
         try {
             message = dubboService.build("2016-10-20");
             System.out.println(" the message from server is:" + message);
@@ -51,7 +55,14 @@ public class DubboClientServer {
             System.out.println("resultList is:" + JsonUtil.toJson(resultList));
             userInfoList = dubboService.findUserInfoById(Lists.newArrayList(1,2));
             System.out.println("userInfoList is:" + JsonUtil.toJson(userInfoList));
-
+            SysRequest sysRequest = new SysRequest();
+            sysRequest.setId(2);
+            sysRequest.setOtherName("haha");
+            sysRequest.setUserName("mysname");
+            result = dubboService.findByParam(sysRequest);
+            System.out.println("result is:" + JsonUtil.toJson(result));
+            sysRequestResponse = dubboService.findByParam1(sysRequest);
+            System.out.println("sysRequestResponse is:" + sysRequestResponse.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

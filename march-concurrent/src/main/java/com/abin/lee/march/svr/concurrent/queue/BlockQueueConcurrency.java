@@ -74,7 +74,14 @@ public class BlockQueueConcurrency {
             blockingQueue1.add(element);
         }
         while(!blockingQueue1.isEmpty()){
-            System.out.println("PriorityBlockingQueue=" + blockingQueue1.take());
+            System.out.println("PriorityBlockingQueue---blockingQueue1= " + blockingQueue1.take());
+        }
+        PriorityBlockingQueue<Integer> blockingQueue2 = new PriorityBlockingQueue<Integer>(4);
+        for (int i = 0; i < 5; i++) {
+            blockingQueue2.add(i);
+        }
+        while(!blockingQueue2.isEmpty()){
+            System.out.println("PriorityBlockingQueue---blockingQueue2= " + blockingQueue2.take());
         }
     }
 
