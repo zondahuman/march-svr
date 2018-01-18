@@ -16,7 +16,7 @@ public class LruLinkedHashMap<K, V> implements LruCache<K, V>{
     LinkedHashMap<K, V> map;
 
     public LruLinkedHashMap(int capacity){
-        this.map = new LinkedHashMap<K, V>(capacity){
+        this.map = new LinkedHashMap<K, V>(capacity, DEFAULT_LOAD_FACTORY, true){
             @Override
             protected boolean removeEldestEntry(Map.Entry<K, V> eldest){
                 return size() > capacity;
@@ -57,6 +57,6 @@ public class LruLinkedHashMap<K, V> implements LruCache<K, V>{
         System.out.println(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase().substring(0,30)+random.nextInt(10));
 
 
-        
+
     }
 }
