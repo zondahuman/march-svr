@@ -6,6 +6,7 @@ import java.util.Random;
  * 问题：M（如10亿）个int整数，只有其中N个数重复出现过，读取到内存中并将重复的整数删除。<br/>
  * 使用位映射来进行海量数据的去重排序，原先一个元素用一个int现在只用一个bit， 内存占比4*8bit:1bit=32:1<br/>
  * 亦可用java语言提供的BitSet，不过其指定bit index的参数为int类型，因此在此例中将输入数转为bit index时对于较大的数会越界<br><br/>
+ * https://www.cnblogs.com/z-sm/p/6238977.html
  */
 public class BigDataSort {
 
