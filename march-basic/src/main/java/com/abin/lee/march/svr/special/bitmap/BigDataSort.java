@@ -7,6 +7,8 @@ import java.util.Random;
  * 使用位映射来进行海量数据的去重排序，原先一个元素用一个int现在只用一个bit， 内存占比4*8bit:1bit=32:1<br/>
  * 亦可用java语言提供的BitSet，不过其指定bit index的参数为int类型，因此在此例中将输入数转为bit index时对于较大的数会越界<br><br/>
  * https://www.cnblogs.com/z-sm/p/6238977.html
+ * 10亿int数字=10亿*4byte=3.725G     现在1bit可以存储一个4byte的数字有或是没有的状态0或1     占用的内存3.725G/4*8bit=120M 。
+ * byte[] 数组长度10亿/ 8=1.25亿   1.25亿byte/ 1024/1024=120兆
  */
 public class BigDataSort {
 
